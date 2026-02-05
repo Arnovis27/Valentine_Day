@@ -1,0 +1,139 @@
+/* ===== GLOBAL ===== */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: black;
+  font-family: monospace;
+  overflow: hidden;
+  color: #ff4d6d;
+}
+
+/* ===== MATRIX ===== */
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+/* ===== START SCREEN ===== */
+#start {
+  position: fixed;
+  inset: 0;
+  background: black;
+  color: #ff4d6d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  cursor: pointer;
+  font-size: 18px;
+  text-align: center;
+}
+
+/* ===== LAYOUT ===== */
+#container {
+  position: relative;
+  z-index: 2;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== TERMINAL ===== */
+#terminal {
+  width: 90%;
+  max-width: 420px;
+  background: rgba(0,0,0,0.85);
+  padding: 16px;
+  border: 1px solid #ff4d6d;
+  margin-bottom: 20px;
+}
+
+.line {
+  min-height: 18px;
+}
+
+.cursor::after {
+  content: "▌";
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ===== ENVELOPE ===== */
+.envelope {
+  width: 220px;
+  height: 140px;
+  background: #ffe5ec;
+  position: relative;
+  cursor: pointer;
+  display: none;
+  box-shadow: 0 0 20px rgba(255,77,109,0.6);
+}
+
+.envelope::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #ffb3c1;
+  clip-path: polygon(0 0, 50% 60%, 100% 0);
+}
+
+.envelope-text {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  color: #8b0000;
+  font-weight: bold;
+}
+
+/* ===== TEDDY (BEHIND) ===== */
+.teddy {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.55);
+  width: 170px;
+  opacity: 0;
+  transition: all 1.2s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.envelope.open .teddy {
+  bottom: 92px;
+  opacity: 1;
+}
+
+/* ===== LETTER (FRONT) ===== */
+.letter {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  width: 180px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 14px;
+  color: #b00020;
+  opacity: 0;
+  transition: all 1s ease;
+  padding: 10px;
+  z-index: 3;
+}
+
+.envelope.open .letter {
+  bottom: 60px;
+  opacity: 1;
+}
