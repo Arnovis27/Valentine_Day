@@ -1,3 +1,9 @@
+/* ===== RESET ===== */
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -26,7 +32,7 @@ canvas {
   justify-content: center;
   z-index: 999;
   cursor: pointer;
-  font-size: 18px;
+  font-size: clamp(16px, 4vw, 20px);
   text-align: center;
 }
 
@@ -39,19 +45,22 @@ canvas {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 16px;
 }
 
 /* ===== TERMINAL ===== */
 #terminal {
-  width: 90%;
-  max-width: 420px;
+  width: min(420px, 90vw);
   background: rgba(0,0,0,0.85);
   padding: 16px;
   border: 1px solid #ff4d6d;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
-.line { min-height: 18px; }
+.line {
+  min-height: 18px;
+  font-size: clamp(13px, 3.5vw, 14px);
+}
 
 .cursor::after {
   content: "▌";
@@ -64,13 +73,14 @@ canvas {
 
 /* ===== ENVELOPE ===== */
 .envelope {
-  width: 220px;
-  height: 140px;
+  width: min(220px, 80vw);
+  aspect-ratio: 11 / 7;
   background: #ffe5ec;
   position: relative;
   cursor: pointer;
   display: none;
-  box-shadow: 0 0 20px rgba(255,77,109,0.6);
+  box-shadow: 0 0 25px rgba(255,77,109,0.6);
+  border-radius: 4px;
 }
 
 .envelope::before {
@@ -79,6 +89,7 @@ canvas {
   inset: 0;
   background: #ffb3c1;
   clip-path: polygon(0 0, 50% 60%, 100% 0);
+  z-index: 2;
 }
 
 .envelope-text {
@@ -86,18 +97,19 @@ canvas {
   bottom: 10px;
   width: 100%;
   text-align: center;
-  font-size: 14px;
+  font-size: clamp(14px, 4vw, 16px);
   color: #8b0000;
   font-weight: bold;
+  z-index: 3;
 }
 
 /* ===== TEDDY ===== */
 .teddy {
   position: absolute;
-  bottom: -20px;
+  bottom: -20%;
   left: 50%;
   transform: translateX(-50%) scale(0.55);
-  width: 170px;
+  width: min(170px, 60vw);
   opacity: 0;
   transition: all 1.2s ease;
   z-index: 1;
@@ -105,41 +117,41 @@ canvas {
 }
 
 .envelope.open .teddy {
-  bottom: 92px;
+  bottom: calc(100% - 45px);
   opacity: 1;
 }
 
 /* ===== LETTER ===== */
 .letter {
   position: absolute;
-  bottom: 10px;
+  bottom: 8%;
   left: 50%;
   transform: translateX(-50%);
   background: white;
-  width: 180px;
-  height: 100px;
+  width: 80%;
+  min-height: 90px;
+  padding: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: 14px;
+  font-size: clamp(13px, 3.8vw, 15px);
   color: #b00020;
   opacity: 0;
   transition: all 1s ease;
-  padding: 10px;
-  z-index: 3;
+  z-index: 4;
+  border-radius: 4px;
 }
 
 .envelope.open .letter {
-  bottom: 60px;
+  bottom: 45%;
   opacity: 1;
 }
 
-/* ===== HEARTS EFFECT ===== */
+/* ===== HEARTS ===== */
 .heart {
-  position: fixed; /* 👈 IMPORTANTE */
-  font-size: 20px;
-  color: #ff4d6d;
+  position: fixed;
+  font-size: clamp(18px, 5vw, 24px);
   pointer-events: none;
   animation: floatUp 1.5s ease-out forwards;
   z-index: 999;
@@ -147,11 +159,11 @@ canvas {
 
 @keyframes floatUp {
   from {
-    transform: translateY(0) scale(0.8);
+    transform: translateY(0) scale(0.6);
     opacity: 1;
   }
   to {
-    transform: translateY(-80px) scale(1.4);
+    transform: translateY(-100px) scale(1.5);
     opacity: 0;
   }
 }

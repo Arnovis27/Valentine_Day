@@ -11,8 +11,8 @@ addEventListener("resize", resizeCanvas);
 
 const chars = "♥LOVE0123456789";
 const fontSize = 16;
-const columns = Math.floor(canvas.width / fontSize);
-const drops = Array.from({ length: columns }, () => 1);
+let columns = Math.floor(canvas.width / fontSize);
+let drops = Array.from({ length: columns }, () => 1);
 
 function drawMatrix() {
   ctx.fillStyle = "rgba(0,0,0,0.05)";
@@ -23,19 +23,21 @@ function drawMatrix() {
   drops.forEach((y, i) => {
     const text = chars[Math.floor(Math.random() * chars.length)];
     ctx.fillText(text, i * fontSize, y * fontSize);
-    if (y * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+    if (y * fontSize > canvas.height && Math.random() > 0.975) {
+      drops[i] = 0;
+    }
     drops[i]++;
   });
 }
 setInterval(drawMatrix, 33);
 
 /* ===== ELEMENTS ===== */
+const startScreen = document.getElementById("start");
+const terminal = document.getElementById("terminal");
+const lines = document.querySelectorAll(".line");
+const envelope = document.getElementById("envelope");
 const beep = document.getElementById("beep");
 const openSound = document.getElementById("openSound");
-const lines = document.querySelectorAll(".line");
-const terminal = document.getElementById("terminal");
-const envelope = document.getElementById("envelope");
-const startScreen = document.getElementById("start");
 
 /* ===== TYPEWRITER ===== */
 function typeLine(el, text, speed = 60) {
@@ -65,33 +67,21 @@ async function startSequence() {
   }, 700);
 }
 
-/* ===== HEARTS ===== */
+/* ===== HEART EFFECT ===== */
 function spawnHearts() {
   const rect = envelope.getBoundingClientRect();
-  const heartCount = 8;
-
-  for (let i = 0; i < heartCount; i++) {
+  for (let i = 0; i < 8; i++) {
     const heart = document.createElement("div");
     heart.className = "heart";
     heart.textContent = "❤️";
 
-    const x =
-      rect.left +
-      Math.random() * rect.width;
-
-    const y =
-      rect.top +
-      Math.random() * rect.height;
-
-    heart.style.left = `${x}px`;
-    heart.style.top = `${y}px`;
+    heart.style.left = rect.left + Math.random() * rect.width + "px";
+    heart.style.top = rect.top + Math.random() * rect.height + "px";
 
     document.body.appendChild(heart);
-
     setTimeout(() => heart.remove(), 1500);
   }
 }
-
 
 /* ===== START ===== */
 startScreen.addEventListener("click", () => {

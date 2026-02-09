@@ -2,49 +2,55 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Encrypted Love</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encrypted Love 💖</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<div id="start">❤️ Tap to decrypt ❤️</div>
+  <!-- START SCREEN -->
+  <div id="start">❤️ Tap to decrypt ❤️</div>
 
-<canvas id="matrix"></canvas>
+  <!-- MATRIX BACKGROUND -->
+  <canvas id="matrix"></canvas>
 
-<div id="container">
+  <!-- MAIN CONTENT -->
+  <div id="container">
 
-  <div id="terminal">
-    <div class="line cursor" data-text="Initializing love protocol..."></div>
-    <div class="line cursor" data-text="Decrypting message..."></div>
-    <div class="line cursor" data-text="LOVE ACCESS GRANTED ❤️"></div>
-  </div>
-
-  <div class="envelope" id="envelope">
-
-    <!-- 🧸 OSITO DETRÁS -->
-    <img
-      src="https://marketplace.canva.com/GRFW0/MAG1fkGRFW0/1/tl/canva-cute-cartoon-teddy-bear-illustration-MAG1fkGRFW0.png"
-      class="teddy"
-      alt="Teddy bear"
-    >
-
-    <!-- 💌 CARTA -->
-    <div class="letter">
-      💖<br>
-      This message is for you.<br>
-      Happy Valentine’s Day ❤️
+    <!-- TERMINAL -->
+    <div id="terminal">
+      <div class="line cursor" data-text="Initializing love protocol..."></div>
+      <div class="line cursor" data-text="Decrypting message..."></div>
+      <div class="line cursor" data-text="LOVE ACCESS GRANTED ❤️"></div>
     </div>
 
-    <div class="envelope-text">Click on me ❤️</div>
+    <!-- ENVELOPE -->
+    <div class="envelope" id="envelope">
+
+      <!-- TEDDY BEHIND -->
+      <img
+        src="https://marketplace.canva.com/GRFW0/MAG1fkGRFW0/1/tl/canva-cute-cartoon-teddy-bear-illustration-MAG1fkGRFW0.png"
+        class="teddy"
+        alt="Teddy Bear"
+      >
+
+      <!-- LETTER -->
+      <div class="letter">
+        💖<br>
+        This message is for you.<br>
+        Happy Valentine’s Day ❤️
+      </div>
+
+      <div class="envelope-text">Click on me ❤️</div>
+    </div>
+
   </div>
 
-</div>
+  <!-- SOUNDS -->
+  <audio id="beep" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
+  <audio id="openSound" src="https://actions.google.com/sounds/v1/cartoon/pop.ogg"></audio>
 
-<!-- 🔊 AUDIOS -->
-<audio id="beep" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
-<audio id="openSound" src="https://actions.google.com/sounds/v1/cartoon/pop.ogg"></audio>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
